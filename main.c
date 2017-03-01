@@ -11,6 +11,8 @@
 #define ROWS 512
 #define COLS 512
 
+#define OUT_FILE "opt.txt"
+
 static void write_to_ppm(FILE *outfile, uint8_t *pixels,
                          int width, int height)
 {
@@ -64,5 +66,10 @@ int main()
     free(pixels);
     printf("Done!\n");
     printf("Execution time of raytracing() : %lf sec\n", diff_in_second(start, end));
+
+    FILE *output = fopen(OUT_FILE, "a");
+    fprintf(output, "raytracing() %lf\n", diff_in_second(start, end));
+    fclose(output);
+
     return 0;
 }

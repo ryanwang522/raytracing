@@ -10,9 +10,9 @@ $(GIT_HOOKS):
 
 CC ?= gcc
 CFLAGS = \
-	-std=gnu99 -Wall -O0 -g
+	-std=gnu99 -Wall -fopenmp -O0 -g
 LDFLAGS = \
-	-lm
+	-lm -lgomp
 
 ifeq ($(strip $(PROFILE)),1)
 PROF_FLAGS = -pg
@@ -50,4 +50,4 @@ check: $(EXEC)
 
 clean:
 	$(RM) $(EXEC) $(OBJS) use-models.h \
-		out.ppm gmon.out
+		out.ppm gmon.out opt.txt
